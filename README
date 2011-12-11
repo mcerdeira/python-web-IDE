@@ -1,0 +1,21 @@
+#########################
+Django-IDE
+#########################
+
+How to:
+
+1) Start with django-ide.py
+2) Go to http://localhost:8080/django-ide
+3) Enjoy!
+
+Django-IDE helps you to:
+
+    Easily create Django projects.
+    Manage and edit existing project
+    Edit and Save your code, with a editor based on Ace.
+    Run and debug.
+
+We’ll assume you have Django installed already.
+
+
+Django-IDE runs on a bottle server and uses Ace as the main code editor.
