@@ -2,6 +2,10 @@
 Django-IDE
 #########################
 
+Preview (from an early version)
+
+http://www.youtube.com/watch?v=ddQDgp4XrJ4
+
 How to:
 
 1) Start with django-ide.py
@@ -15,7 +19,9 @@ Django-IDE helps you to:
     Edit and Save your code, with a editor based on Ace.
     Run and debug.
 
-We’ll assume you have Django installed already.
+We'll assume you have Django installed already.
 
 
 Django-IDE runs on a bottle server and uses Ace as the main code editor.
+
+NOTE: This is a beta version!
