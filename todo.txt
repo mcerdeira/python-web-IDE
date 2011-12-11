@@ -1,0 +1,36 @@
+##################################################
+Beta/Preview Roadmap
+##################################################
+- Last projects lists feature (implement with sqllite)
+- Make a demo video
+- Release
+
+
+##################################################
+Version 1 Rodadmap
+##################################################
+
+- Python Debugger
+- Save & Delete files
+- Make a demo video
+- Upload project to GitHub
+- Release
+
+
+#################################################
+Version 2 Roadmap
+#################################################
+
+- Keys shortcuts
+- Documentation
+- Editor style selector
+- Make a demo video
+- Release
+
+
+
+BUGS:
+- Project path and name as global, MUST be session variables.  
+     Use:
+        response.COOKIES['koko'] = 'lolo'
+        str(request.COOKIES)

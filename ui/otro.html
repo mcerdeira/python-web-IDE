@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Read host directory</TITLE>
+
+<script type="text/javascript">
+function showAvailableDrives()
+{
+document.write( getDriveList() );
+} 
+
+function getDriveList()
+{
+var fso, s, n, e, x;
+fso = new ActiveXObject('Scripting.FileSystemObject');
+e = new Enumerator( fso.Drives );
+s = '';
+do
+{ x = e.item();
+s = s + x.DriveLetter;
+s += ':- ';
+if ( x.DriveType == 3 ) n = x.ShareName;
+else if ( x.IsReady ) 
+n = x.VolumeName;
+else n = '[Drive not ready]';
+
+s += n + '<br>';
+e.moveNext();
+} 
+while ( !e.atEnd() );
+return( s );
+} 
+</script>
+
+
+
+</HEAD>
+
+<BODY onload='getDriveList();'>
+
+</BODY>
+
+</HTML>

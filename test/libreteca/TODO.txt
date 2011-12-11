@@ -1,0 +1,28 @@
+[ESTRUCTURA]
+art      --> Todo lo que sea imágenes del sitio
+css      --> Hojas de estilo
+js       --> Scripts en JavaScript (AJAX, etc)
+uploads  --> Carpeta de imagenes para tapas de libros
+
+
+[MANEJO GENERAL]
+- Hacer edición de la cuenta de usuario (cambiar datos principales y crear biblioteca)
+- Corregir y adaptar los queries según nuevas estructuras
+- Traducir a español
+- Hacer funcionar el mail en linux
+
+[MANEJO DE USUARIOS]
+- Hacer comentarios
+- Edición de libros al momento de subirlos (que puedan poner autor, la tapa, ISBN etc)
+- Tags para búsqueda
+
+--------------------------------------------- DONE ------------------------------------------------------------
+- Utilizar hoja de estilos css, en carpeta css.
+- Pasar todo lo que sea JavaScript a la carpeta js.
+- Resize de la imagen de fondo, basado en el navegador.
+- Resize especial de la imagen si es IE.
+- Registro de usuarios
+- Validar mails contra regex
+- Redirección a casilla de mail, según hosting.
+- Validación de usuarios temporales (nive=-1 vía mail) (cambiar mail de speedy)
+- Hacer opción forgot password?

@@ -1,0 +1,45 @@
+http://atejada.blogspot.com/
+https://docs.djangoproject.com/en/1.3/intro/tutorial01/
+
+Subprocess
+http://jimmyg.org/blog/2009/working-with-python-subprocess.html#reading-and-writing-to-the-same-process 
+
+Botonera:
+Ver si puedo robar la barra superior del proyecto music-cloud en php
+
+
+Static files are not served automatically. You have to explicitly
+define a route to publish them. Here is an example:
+
+@bottle.route('/static/:filename#.*#')
+def static_file(filename):
+    bottle.send_file(filename, root='/home/user/project/static/')
+
+From now on, all requests to URLs beginning with '/static/' will be
+answered with files in '/home/user/project/static/'. Now you can link
+to your css file at http://example.com/static/style/style.css
+
+http://javascriptcompressor.com/
+
+this.onMouseDoubleClick = function(e) {  <-- Este es el evento del doble click
+this.$callKeyboardHandler = function (e, hashId, keyOrText, keyCode) {  <-- Este es el evento del teclado
+
+function exec(command, env, sender, args, typed) { <-- Aca estuve haciendo pruebas con eventos y demas
+
+See http://bottle.paws.de/page/docs#routing for details.
+-------------------------------------------------------------------------------------------
+
+Ace API
+https://github.com/ajaxorg/ace/wiki/Embedding---API
+
+for (var name in myObject) {
+    alert(name);
+  }
+
+Solucion para el Save (AJAX)
+http://stackoverflow.com/questions/6659559/ace-editor-in-php-web-app
+
+Ver en "demo" ejemplos de keybindins.
+Ver como pone (en javascript) el iconito del error o warning, para poner un icono igual en el caso del breakpoint
+
+

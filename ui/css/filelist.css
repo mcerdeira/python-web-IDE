@@ -1,0 +1,81 @@
+         *{
+             padding:0;
+             margin:0;
+         }
+         html,body {
+             color:#333;
+             font:12px/1.4em Verdana,sans-serif;
+             -webkit-text-shadow:1px 1px 1px #cacaca;
+             -moz-text-shadow:1px 1px 1px #cacaca;
+         }
+         a{
+             padding: 2px 0 0 24px;
+             color:#234f32;          /* nombre del link*/
+             text-decoration:none;
+         }
+         a:hover{
+             color:#000;
+         }
+         #container{
+             margin:0 auto;
+             width:700px;
+             margin-top:20px;
+             padding-top:10px;
+             border:1px solid #EEE;
+             border-radius:10px;
+             -moz-border-radius:10px;
+         }
+         .head{
+             background-color:#234f32;
+             color:#FFF;
+             font-weight:bold;
+             padding:7px 0 5px 10px;
+             font-size:14px;
+             letter-spacing:1px;
+             font-family: Verdana, Arial, Helvetica, sans-serif;
+         }
+         .head:hover{background-color:#487858;}
+         .head span{font-size:9px; letter-spacing:0;}
+         td{
+             background-color:#F3F3F3;
+             padding:6px;
+         }
+         td:hover{background-color:#EFEFEF;}
+         h1{
+             font-size:18px;
+             font-weight:bold;
+             padding:0 0 10px 10px;
+         }
+
+         /*icons for file types (add more to suit your needs - icons by famfamfam.)*/
+
+         /*images*/
+         a[href$=".jpg"] {background: url(image.gif) no-repeat left 50%;}
+         a[href$=".gif"] {background: url(image.gif) no-repeat left 50%;}
+         a[href$=".png"] {background: url(image.gif) no-repeat left 0%;}
+
+         /*pdfs*/
+         a[href$=".pdf"] {background: url(pdf.gif) no-repeat left 50%;}
+
+         /*psds*/
+         a[href$=".psd"] {background: url(psd.gif) no-repeat left 50%;}
+
+         /*docs*/
+         a[href$=".doc"] {background: url(doc.gif) no-repeat left 50%;}
+         a[href$=".txt"] {background: url(doc.gif) no-repeat left 50%;}
+
+         /*videos*/
+         a[href$=".avi"] {background: url(video.gif) no-repeat left 50%;}
+         a[href$=".m4a"] {background: url(video.gif) no-repeat left 50%;}
+         a[href$=".mov"] {background: url(video.gif) no-repeat left 50%;}
+         a[href$=".mp4"] {background: url(video.gif) no-repeat left 50%;}
+         a[href$=".wmv"] {background: url(video.gif) no-repeat left 50%;}
+
+         /*audio*/
+         a[href$=".mp3"] {background: url(audio.gif) no-repeat left 50%;}
+         a[href$=".wma"] {background: url(audio.gif) no-repeat left 50%;}
+         a[href$=".aac"] {background: url(audio.gif) no-repeat left 50%;}
+
+         /*web pages*/
+         a[href$=".html"] {background: url(html.gif) no-repeat left 50%;}
+         a[href$=".php"] {background: url(html.gif) no-repeat left 50%;}

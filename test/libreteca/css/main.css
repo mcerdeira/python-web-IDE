@@ -1,0 +1,100 @@
+.Estilo1 {
+	color: black;
+	font-weight: bold;
+}
+.Estilo2 {
+	color: black;
+}
+/*index.php*/
+.Estilo1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.Estilo2 {
+	color:  #FFFFFF;
+}
+.Estilo3 {
+	color: black;
+	font-weight: bold;
+}
+.Estilo4 {
+	color: black;
+	font-weight: italic;
+}
+
+#seekhosting-banner-right-1-1 {
+	position:fixed;
+	left:1px;
+	top:1px;
+	width:1221px;
+	height:40px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	visibility: inherit;
+	background-color: black;
+}
+#message {
+    font-family:Arial,Helvetica,sans-serif;
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    z-index:105;
+    text-align:center;
+    font-weight:bold;
+    font-size:100%;
+    color:white;
+    padding:10px 0px 10px 0px;
+    background-color:#000000;
+}
+
+#message span {
+    text-align: center;
+    width: 95%;
+    float:left;
+}
+
+.close-notify {
+    white-space: nowrap;
+    float:right;
+    margin-right:10px;
+    color:#fff;
+    text-decoration:none;
+    border:2px #fff solid;
+    padding-left:3px;
+    padding-right:3px
+}
+
+.close-notify a {
+    color: #fff;
+}
+/*index.php ELSE*/
+.Estilo1 {
+	color: black;
+	font-weight: bold;
+}
+
+.Estilo2 {
+	color: black;
+}
+.Estilo4 {
+	color: black;
+	font-style: italic;
+	font-size: 12;
+}
+
+/*signin.php*/
+.Estilo1 {color: #FFFFFF}
+.Estilo2 {color: #000000}
+
+
+/*uploader.php*/
+.Estilo1 {
+	color: black;
+	font-weight: bold;
+}
+
+.Estilo2 {
+	color: black;
+}
