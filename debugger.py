@@ -17,8 +17,7 @@ class Debugger:
         self.supported_commands = ['s', 'r', 'q'] # Step, Run, Quit: supported commands =)
 
     def set_breakpoint(filename, lineno, condition = None):
-        # example: self.breaks["myfile.py"] = (180, "if a == 10")
-        self.breaks[filename] = (lineno, condition)
+        self.breaks{filename} = None # ToDo
 
     def debug(self, debug_file):
         #import __main__

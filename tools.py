@@ -3,6 +3,34 @@
 import os, sys, sqlite3
 import shutil, subprocess, webbrowser, time
 
+
+##############################
+######### CLASSES ############
+##############################
+
+class BreakPoints():
+    def __init__(self):
+        self.breaks = {}
+
+    def toggle_line(self, filename, lineno):
+        """ manages adds and finds break points and files that owns them
+        brk_obj: a dictionary
+        filename: the name of the file, serves as the dictionary key
+        lineno: the line number to toggle
+        """
+        if filename not in self.breaks.keys():
+           self.breaks[filename] = [lineno]
+        else:
+           if lineno not in self.breaks[filename]:
+               self.breaks[filename].append(lineno)
+           else:
+               self.breaks[filename].remove(lineno)
+
+
+##############################
+######### FUNCTIONS ##########
+##############################
+
 def add_doubledash(fname):
     """ turns slashes into double slashes
     in order to pass to javascript,and back
@@ -32,7 +60,6 @@ def render_main(mfile):
     retvalue += get_latest()
     retvalue += '''</body>
                  </head>'''
-
     return retvalue
 
 def file_lister(root, project):
@@ -126,6 +153,26 @@ def extension_man(filext):
     else:
        return ''
 
+def div_events():
+    """ Sets div doble click events
+    """
+    retVal = """
+    <script>
+    $('div.ace_gutter-cell').live("dblclick",function() {
+        var line_no = $(this).text();
+        // Draw the break point
+        if ($(this).attr("class")=="ace_gutter-cell"){
+            $(this).attr("class", "ace_gutter-cell ace_error");
+        }else{
+            $(this).attr("class", "ace_gutter-cell");
+        }
+        // Pass the lineno to the pre-debugger
+        $.post("add.breakpoint", {line_no: line_no});
+    });
+    </script>
+    """
+    return retVal
+
 def render_editor(project_path, filename, filext, project, filebuf):
     if filebuf:
        save_cmd = "saveNotice()"
@@ -178,8 +225,9 @@ def render_editor(project_path, filename, filext, project, filebuf):
 
     <pre id="editor">"""
     retvalue += filebuf
-    retvalue += """</pre>
+    retvalue += """</pre>"""
 
+    retvalue += """
     <script src="/ui/ace/src/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
     <script src="/ui/ace/src/theme-crimson_editor.js" type="text/javascript" charset="utf-8"></script>
     <script src="/ui/ace/src/mode-""" + extension_man(filext) + """.js" type="text/javascript" charset="utf-8"></script>
@@ -197,8 +245,11 @@ def render_editor(project_path, filename, filext, project, filebuf):
         var EditorMode = require("ace/mode/""" + extension_man(filext) + """").Mode;
         editor.getSession().setMode(new EditorMode());
     };
-    </script>
+    </script>"""
+    
+    retvalue += div_events()
 
+    retvalue += """
     </body>
     </html>
     """

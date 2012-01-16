@@ -7,15 +7,20 @@
 import sys, os, subprocess, tools
 from bottle import run, route, error, request, response, get, post, request, redirect, static_file, debug
 
-PROJECT_PATH = ""  # It would be nice to implement this PROJEC_ variables, with sessions...
+PROJECT_PATH = ""  # It would be nice to implement this PROJECT_ variables, with sessions...
 PROJECT_NAME = ""
 debugger = None
+breaks = None # Break points Class to be passed to debugger.py
 
 try:
      import django
 except ImportError, e:
      print e
 else:
+    ###################
+    #### JS Events ####
+    ###################
+
     @post('/django-ide/editor/debug.file')
     def debug_file():
         curFullFile = request.forms.get('curFullFile')
@@ -46,6 +51,18 @@ else:
         f.write(content)
         f.close
 
+    @post('/django-ide/editornew/add.breakpoint')
+    @post('/django-ide/editor/add.breakpoint')
+    def add_breakpoint():  
+        curFile = request.forms.get('curFile')
+        line_no = request.forms.get('line_no')
+        global breaks
+        breaks.toggle_line(curFile,line_no)
+
+    ##############################
+    #### Statis files routing ####
+    ##############################
+
     @route('/ui/css/:filename')
     def css_file(filename):
         return static_file(filename, root=os.getcwd() + '/ui/css/')
@@ -61,6 +78,10 @@ else:
     @route('/ui/js/:filename')
     def js_file(filename):
         return static_file(filename, root=os.getcwd() + '/ui/js/')
+
+    ###############################
+    ###############################
+    ###############################
 
     @route('/django-ide/open/:project')
     def open_project_with_name(project):
@@ -150,6 +171,8 @@ else:
 
     def start_ide():
         #Development server
+        global breaks
+        breaks = tools.BreakPoints() # BreakPoins UNIQUE instance
         debug(True)
         print '======================================================='
         print 'Django IDE Launched on http://localhost:8080/django-ide'
