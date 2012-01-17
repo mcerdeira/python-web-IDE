@@ -21,6 +21,9 @@ to your css file at http://example.com/static/style/style.css
 
 http://javascriptcompressor.com/
 
+Gif to URI
+http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
+
 this.onMouseDoubleClick = function(e) {  <-- Este es el evento del doble click
 this.$callKeyboardHandler = function (e, hashId, keyOrText, keyCode) {  <-- Este es el evento del teclado
 

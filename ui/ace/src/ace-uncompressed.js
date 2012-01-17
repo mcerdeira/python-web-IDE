@@ -40,7 +40,7 @@
  * @param module a name for the payload
  * @param payload a function to call with (require, exports, module) params
  */
-
+ 
 (function() {
     
 var global = (function() {
@@ -111,7 +111,7 @@ _require.packaged = true;
 
 if (global.require)
     _require.original = global.require;
-
+    
 global.require = _require;
 
 
@@ -1077,10 +1077,10 @@ if (!Object.keys) {
 
 // ES5 15.9.5.43
 // http://es5.github.com/#x15.9.5.43
-// This function returns a String value represent the instance in time
-// represented by this Date object. The format of the String is the Date Time
-// string format defined in 15.9.1.15. All fields are present in the String.
-// The time zone is always UTC, denoted by the suffix Z. If the time value of
+// This function returns a String value represent the instance in time 
+// represented by this Date object. The format of the String is the Date Time 
+// string format defined in 15.9.1.15. All fields are present in the String. 
+// The time zone is always UTC, denoted by the suffix Z. If the time value of 
 // this object is not a finite Number a RangeError exception is thrown.
 if (!Date.prototype.toISOString || (new Date(-62198755200000).toISOString().indexOf('-000001') === -1)) {
     Date.prototype.toISOString = function toISOString() {
@@ -1246,7 +1246,7 @@ if (Date.parse("+275760-09-13T00:00:00.000Z") !== 8.64e15) {
                 }
 
                 // Date.UTC for years between 0 and 99 converts year to 1900 + year
-                // The Gregorian calendar has a 400-year cycle, so
+                // The Gregorian calendar has a 400-year cycle, so 
                 // to Date.UTC(year + 400, .... ) - 12622780800000 == Date.UTC(year, ...),
                 // where 12622780800000 - number of milliseconds in Gregorian calendar 400 years
                 var year = +match[0];
@@ -2343,7 +2343,7 @@ function buildKeyHash(command) {
             ckbf[keyData.hashId] = { };
         }
         if (!ckbf[keyData.hashId][keyData.key]) {
-            ckbf[keyData.hashId][keyData.key] = [ val ];
+            ckbf[keyData.hashId][keyData.key] = [ val ];   
         } else {
             ckbf[keyData.hashId][keyData.key].push(val);
         }
@@ -2373,7 +2373,7 @@ function findKeyCommand(env, sender, hashId, textOrKey) {
 function execKeyCommand(env, sender, hashId, textOrKey) {
     var command = findKeyCommand(env, sender, hashId, textOrKey);
     if (command) {
-        return exec(command, env, sender, { });
+        return exec(command, env, sender, { });   
     } else {
         return false;
     }
@@ -2410,7 +2410,7 @@ function addCommand(command) {
     commands[command.name] = command;
 
     if (command.bindKey) {
-        buildKeyHash(command);
+        buildKeyHash(command);   
     }
 
     commandNames.push(command.name);
@@ -2443,7 +2443,7 @@ function removeCommand(command) {
             }
         }
     }
-
+    
     var ckbf = commandKeyBindingFunc;
     for (var k1 in ckbf) {
         for (var k2 in ckbf[k1]) {
@@ -2478,7 +2478,7 @@ function defaultArgsProvider(request, callback) {
         // If the parameter is already valid, then don't ask for it anymore.
         if (request.getParamStatus(param) != Status.VALID ||
             // Ask for optional parameters as well.
-            param.defaultValue === null)
+            param.defaultValue === null) 
         {
             var paramPrompt = param.description;
             if (param.defaultValue === null) {
@@ -2491,7 +2491,7 @@ function defaultArgsProvider(request, callback) {
                 return;
             } else {
                 args[param.name] = value;
-            }
+            }           
         }
     }
     callback();
@@ -2501,26 +2501,19 @@ function defaultArgsProvider(request, callback) {
  * Entry point for keyboard accelerators or anything else that wants to execute
  * a command. A new request object is created and a check performed, if the
  * passed in arguments are VALID/INVALID or INCOMPLETE. If they are INCOMPLETE
- * the ArgumentProvider on the sender is called or otherwise the default
+ * the ArgumentProvider on the sender is called or otherwise the default 
  * ArgumentProvider to get the still required arguments.
  * If they are valid (or valid after the ArgumentProvider is done), the command
  * is executed.
- *
+ * 
  * @param command   Either a command, or the name of one
  * @param env       Current environment to execute the command in
- * @param sender    String that should be the same as the senderObject stored on
+ * @param sender    String that should be the same as the senderObject stored on 
  *                  the environment in env[sender]
  * @param args      Arguments for the command
  * @param typed     (Optional)
  */
 function exec(command, env, sender, args, typed) {
-
-
-      //3(env.editor.session.filename);
-
-    //  for (var name in env.editor.session.doc) {
-    //    alert(name);
-    //
     if (typeof command === 'string') {
         command = commands[command];
     }
@@ -2535,26 +2528,26 @@ function exec(command, env, sender, args, typed) {
         args: args || {},
         typed: typed
     });
-
+    
     /**
-     * Executes the command and ensures request.done is called on the request in
+     * Executes the command and ensures request.done is called on the request in 
      * case it's not marked to be done already or async.
      */
     function execute() {
         command.exec(env, request.args, request);
-
+        
         // If the request isn't asnync and isn't done, then make it done.
         if (!request.isAsync && !request.isDone) {
             request.done();
         }
     }
-
-
+    
+    
     if (request.getStatus() == Status.INVALID) {
-        console.error("Canon.exec: Invalid parameter(s) passed to " +
+        console.error("Canon.exec: Invalid parameter(s) passed to " + 
                             command.name);
-        return false;
-    }
+        return false;   
+    } 
     // If the request isn't complete yet, try to complete it.
     else if (request.getStatus() == Status.INCOMPLETE) {
         // Check if the sender has a ArgsProvider, otherwise use the default
@@ -2562,7 +2555,7 @@ function exec(command, env, sender, args, typed) {
         var argsProvider;
         var senderObj = env[sender];
         if (!senderObj || !senderObj.getArgsProvider ||
-            !(argsProvider = senderObj.getArgsProvider()))
+            !(argsProvider = senderObj.getArgsProvider())) 
         {
             argsProvider = defaultArgsProvider;
         }
@@ -2661,7 +2654,7 @@ oop.implement(Request.prototype, EventEmitter);
  */
 Request.prototype.getParamStatus = function(param) {
     var args = this.args || {};
-
+    
     // Check if there is already a value for this parameter.
     if (param.name in args) {
         // If there is no value set and then the value is VALID if it's not
@@ -7145,7 +7138,7 @@ var TextInput = function(parentNode, host) {
     var text = dom.createElement("textarea");
     if (useragent.isTouchPad)
     	text.setAttribute("x-palm-disable-auto-cap", true);
-
+        
     text.style.left = "-10000px";
     parentNode.appendChild(text);
 
@@ -7449,7 +7442,7 @@ var MouseHandler = function(editor) {
     this.onMouseDown = function(e) {
         this.editor._dispatchEvent("mousedown", new MouseEvent(e, this.editor));
     };
-
+    
     this.onMouseMove = function(e) {
         // optimization, because mousemove doesn't have a default handler.
         var listeners = this.editor._eventRegistry && this.editor._eventRegistry["mousemove"];
@@ -7460,7 +7453,6 @@ var MouseHandler = function(editor) {
     };
 
     this.onMouseDoubleClick = function(e) {
-        this.editor.session.setBreakpoints(10);
         this.editor._dispatchEvent("dblclick", new MouseEvent(e, this.editor));
     };
 
@@ -7477,7 +7469,7 @@ var MouseHandler = function(editor) {
         mouseEvent.speed = this.$scrollSpeed * 2;
         mouseEvent.wheelX = e.wheelX;
         mouseEvent.wheelY = e.wheelY;
-
+        
         this.editor._dispatchEvent("mousewheel", mouseEvent);
     };
 
@@ -7551,7 +7543,7 @@ function DefaultHandlers(editor) {
 }
 
 (function() {
-
+    
     this.onMouseDown = function(ev) {
         var inSelection = ev.inSelection();
         var pageX = ev.pageX;
@@ -7559,11 +7551,11 @@ function DefaultHandlers(editor) {
         var pos = ev.getDocumentPosition();
         var editor = this.editor;
         var _self = this;
-
+        
         var selectionRange = editor.getSelectionRange();
         var selectionEmpty = selectionRange.isEmpty();
         var state = STATE_UNKNOWN;
-
+        
         // if this click caused the editor to be focused should not clear the
         // selection
         if (
@@ -7733,11 +7725,11 @@ function DefaultHandlers(editor) {
 
         return ev.preventDefault();
     };
-
+    
     this.onDoubleClick = function(ev) {
         var pos = ev.getDocumentPosition();
         var editor = this.editor;
-
+        
         // If the user dclicked on a fold, then expand it.
         var fold = editor.session.getFoldAt(pos.row, pos.column, 1);
         if (fold) {
@@ -7749,26 +7741,26 @@ function DefaultHandlers(editor) {
             this.$clickSelection = editor.getSelectionRange();
         }
     };
-
+    
     this.onTripleClick = function(ev) {
         var pos = ev.getDocumentPosition();
         var editor = this.editor;
-
+        
         editor.moveCursorToPosition(pos);
         editor.selection.selectLine();
         this.$clickSelection = editor.getSelectionRange();
     };
-
+    
     this.onQuadClick = function(ev) {
         var editor = this.editor;
-
+        
         editor.selectAll();
         this.$clickSelection = editor.getSelectionRange();
     };
-
+    
     this.onScroll = function(ev) {
         var editor = this.editor;
-
+        
         editor.renderer.scrollBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
         if (editor.renderer.isScrollableBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed))
             return ev.preventDefault();
@@ -8642,7 +8634,7 @@ var EditSession = function(text, mode) {
                     folds:  removedFolds
                 });
             }
-
+            
             this.$informUndoManager.schedule();
         }
 
@@ -8654,7 +8646,7 @@ var EditSession = function(text, mode) {
         this.doc.setValue(text);
         this.selection.moveCursorTo(0, 0);
         this.selection.clearSelection();
-
+        
         this.$resetRowCache(0);
         this.$deltas = [];
         this.$deltasDoc = [];
@@ -8693,7 +8685,7 @@ var EditSession = function(text, mode) {
             var self = this;
             this.$syncInformUndoManager = function() {
                 self.$informUndoManager.cancel();
-
+                
                 if (self.$deltasFold.length) {
                     self.$deltas.push({
                         group: "fold",
@@ -8701,7 +8693,7 @@ var EditSession = function(text, mode) {
                     });
                     self.$deltasFold = [];
                 }
-
+                
                 if (self.$deltasDoc.length) {
                     self.$deltas.push({
                         group: "doc",
@@ -8709,14 +8701,14 @@ var EditSession = function(text, mode) {
                     });
                     self.$deltasDoc = [];
                 }
-
+                
                 if (self.$deltas.length > 0) {
                     undoManager.execute({
                         action: "aceupdate",
                         args: [self.$deltas, self]
                     });
                 }
-
+                
                 self.$deltas = [];
             }
             this.$informUndoManager =
@@ -16178,7 +16170,7 @@ define("text!ace/css/editor.css", [], "@import url(//fonts.googleapis.com/css?fa
   "}\n" +
   "\n" +
   ".ace_gutter-cell.ace_error {\n" +
-  "    background-image: url(\"data:image/gif,GIF89a%10%00%10%00%D5%00%00%F5or%F5%87%88%F5nr%F4ns%EBmq%F5z%7F%DDJT%DEKS%DFOW%F1Yc%F2ah%CE(7%CE)8%D18E%DD%40M%F2KZ%EBU%60%F4%60m%DCir%C8%16(%C8%19*%CE%255%F1%3FR%F1%3FS%E6%AB%B5%CA%5DI%CEn%5E%F7%A2%9A%C9G%3E%E0a%5B%F7%89%85%F5yy%F6%82%80%ED%82%80%FF%BF%BF%E3%C4%C4%FF%FF%FF%FF%FF%FF%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00!%F9%04%01%00%00%25%00%2C%00%00%00%00%10%00%10%00%00%06p%C0%92pH%2C%1A%8F%C8%D2H%93%E1d4%23%E4%88%D3%09mB%1DN%B48%F5%90%40%60%92G%5B%94%20%3E%22%D2%87%24%FA%20%24%C5%06A%00%20%B1%07%02B%A38%89X.v%17%82%11%13q%10%0Fi%24%0F%8B%10%7BD%12%0Ei%09%92%09%0EpD%18%15%24%0A%9Ci%05%0C%18F%18%0B%07%04%01%04%06%A0H%18%12%0D%14%0D%12%A1I%B3%B4%B5IA%00%3B\");\n" +
+  "    background-image: url(\"data:image/gif;base64,R0lGODlhEAAQAFAAACH5BAEAACUALAAAAAAQABAAhwAAAAAAMwAAZgAAmQAAzAAA/wArAAArMwArZgArmQArzAAr/wBVAABVMwBVZgBVmQBVzABV/wCAAACAMwCAZgCAmQCAzACA/wCqAACqMwCqZgCqmQCqzACq/wDVAADVMwDVZgDVmQDVzADV/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMrADMrMzMrZjMrmTMrzDMr/zNVADNVMzNVZjNVmTNVzDNV/zOAADOAMzOAZjOAmTOAzDOA/zOqADOqMzOqZjOqmTOqzDOq/zPVADPVMzPVZjPVmTPVzDPV/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YrAGYrM2YrZmYrmWYrzGYr/2ZVAGZVM2ZVZmZVmWZVzGZV/2aAAGaAM2aAZmaAmWaAzGaA/2aqAGaqM2aqZmaqmWaqzGaq/2bVAGbVM2bVZmbVmWbVzGbV/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5krAJkrM5krZpkrmZkrzJkr/5lVAJlVM5lVZplVmZlVzJlV/5mAAJmAM5mAZpmAmZmAzJmA/5mqAJmqM5mqZpmqmZmqzJmq/5nVAJnVM5nVZpnVmZnVzJnV/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wrAMwrM8wrZswrmcwrzMwr/8xVAMxVM8xVZsxVmcxVzMxV/8yAAMyAM8yAZsyAmcyAzMyA/8yqAMyqM8yqZsyqmcyqzMyq/8zVAMzVM8zVZszVmczVzMzV/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8rAP8rM/8rZv8rmf8rzP8r//9VAP9VM/9VZv9Vmf9VzP9V//+AAP+AM/+AZv+Amf+AzP+A//+qAP+qM/+qZv+qmf+qzP+q///VAP/VM//VZv/Vmf/VzP/V////AP//M///Zv//mf//zP///wAAAAAAAAAAAAAAAAh9APcJHEiwoMGDCPfRs2WrVi1b9BAqe7XrXLtzDYkZJFbrHLhzvMztO1crIkFwtsx9g2UOpTmGBV+9BEcTnLaWrwqmqllLW89a4HISfLiyZk2hA23VtJVNqa1XvQoSS/VNqc1v5161M+juVcpeL1O5Q+ju6SuvwxKqXctWbUAAOw==\");\n" +
   "    background-repeat: no-repeat;\n" +
   "    background-position: 4px center;\n" +
   "}\n" +
@@ -16984,7 +16976,7 @@ define("text!lib/ace/css/editor.css", [], "@import url(//fonts.googleapis.com/cs
   "}\n" +
   "\n" +
   ".ace_gutter-cell.ace_error {\n" +
-  "    background-image: url(\"data:image/gif,GIF89a%10%00%10%00%D5%00%00%F5or%F5%87%88%F5nr%F4ns%EBmq%F5z%7F%DDJT%DEKS%DFOW%F1Yc%F2ah%CE(7%CE)8%D18E%DD%40M%F2KZ%EBU%60%F4%60m%DCir%C8%16(%C8%19*%CE%255%F1%3FR%F1%3FS%E6%AB%B5%CA%5DI%CEn%5E%F7%A2%9A%C9G%3E%E0a%5B%F7%89%85%F5yy%F6%82%80%ED%82%80%FF%BF%BF%E3%C4%C4%FF%FF%FF%FF%FF%FF%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00!%F9%04%01%00%00%25%00%2C%00%00%00%00%10%00%10%00%00%06p%C0%92pH%2C%1A%8F%C8%D2H%93%E1d4%23%E4%88%D3%09mB%1DN%B48%F5%90%40%60%92G%5B%94%20%3E%22%D2%87%24%FA%20%24%C5%06A%00%20%B1%07%02B%A38%89X.v%17%82%11%13q%10%0Fi%24%0F%8B%10%7BD%12%0Ei%09%92%09%0EpD%18%15%24%0A%9Ci%05%0C%18F%18%0B%07%04%01%04%06%A0H%18%12%0D%14%0D%12%A1I%B3%B4%B5IA%00%3B\");\n" +
+  "    background-image: url(\"data:image/gif;base64,R0lGODlhEAAQAFAAACH5BAEAACUALAAAAAAQABAAhwAAAAAAMwAAZgAAmQAAzAAA/wArAAArMwArZgArmQArzAAr/wBVAABVMwBVZgBVmQBVzABV/wCAAACAMwCAZgCAmQCAzACA/wCqAACqMwCqZgCqmQCqzACq/wDVAADVMwDVZgDVmQDVzADV/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMrADMrMzMrZjMrmTMrzDMr/zNVADNVMzNVZjNVmTNVzDNV/zOAADOAMzOAZjOAmTOAzDOA/zOqADOqMzOqZjOqmTOqzDOq/zPVADPVMzPVZjPVmTPVzDPV/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YrAGYrM2YrZmYrmWYrzGYr/2ZVAGZVM2ZVZmZVmWZVzGZV/2aAAGaAM2aAZmaAmWaAzGaA/2aqAGaqM2aqZmaqmWaqzGaq/2bVAGbVM2bVZmbVmWbVzGbV/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5krAJkrM5krZpkrmZkrzJkr/5lVAJlVM5lVZplVmZlVzJlV/5mAAJmAM5mAZpmAmZmAzJmA/5mqAJmqM5mqZpmqmZmqzJmq/5nVAJnVM5nVZpnVmZnVzJnV/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wrAMwrM8wrZswrmcwrzMwr/8xVAMxVM8xVZsxVmcxVzMxV/8yAAMyAM8yAZsyAmcyAzMyA/8yqAMyqM8yqZsyqmcyqzMyq/8zVAMzVM8zVZszVmczVzMzV/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8rAP8rM/8rZv8rmf8rzP8r//9VAP9VM/9VZv9Vmf9VzP9V//+AAP+AM/+AZv+Amf+AzP+A//+qAP+qM/+qZv+qmf+qzP+q///VAP/VM//VZv/Vmf/VzP/V////AP//M///Zv//mf//zP///wAAAAAAAAAAAAAAAAh9APcJHEiwoMGDCPfRs2WrVi1b9BAqe7XrXLtzDYkZJFbrHLhzvMztO1crIkFwtsx9g2UOpTmGBV+9BEcTnLaWrwqmqllLW89a4HISfLiyZk2hA23VtJVNqa1XvQoSS/VNqc1v5161M+juVcpeL1O5Q+ju6SuvwxKqXctWbUAAOw==\");\n" +
   "    background-repeat: no-repeat;\n" +
   "    background-position: 4px center;\n" +
   "}\n" +

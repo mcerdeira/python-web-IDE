@@ -161,10 +161,14 @@ def div_events():
     $('div.ace_gutter-cell').live("dblclick",function() {
         var line_no = $(this).text();
         // Draw the break point
+        // TODO: Improve breakpoint icon
+
         if ($(this).attr("class")=="ace_gutter-cell"){
             $(this).attr("class", "ace_gutter-cell ace_error");
+            $(this).attr("title", "break point added");
         }else{
             $(this).attr("class", "ace_gutter-cell");
+            $(this).attr("title", "");
         }
         // Pass the lineno to the pre-debugger
         $.post("add.breakpoint", {line_no: line_no});
